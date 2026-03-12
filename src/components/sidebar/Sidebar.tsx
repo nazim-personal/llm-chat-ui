@@ -1,7 +1,7 @@
 'use client';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ConversationList } from './ConversationList';
-import { AppWindow, Code, Compass, Folder, Image as ImageIcon, Search, Telescope, Bot, Edit, Settings as SettingsIcon, LogOut } from 'lucide-react';
+import { Edit, Settings as SettingsIcon, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useChat } from '@/modules/chat/hooks/useChat';
 import { useRouter } from 'next/navigation';
@@ -30,18 +30,13 @@ export function Sidebar({ activeConversationId }: SidebarProps) {
 
   return (
     <div className="flex h-full flex-col bg-sidebar text-sidebar-foreground pt-4">
-      <div className="px-2">
-        <Button variant="ghost" onClick={handleNewChat} className="w-full justify-start gap-2 text-lg font-semibold">
-            ChatGPT-NextGen
+      <div className="flex items-center justify-between px-4 pb-2">
+        <span className="text-lg font-semibold">
+            ChatGPT
+        </span>
+        <Button variant="ghost" size="icon" onClick={handleNewChat} className="h-8 w-8">
+            <Edit className="h-5 w-5" />
         </Button>
-      </div>
-      <div className="p-2">
-        <nav className="flex flex-col gap-1">
-            <Button variant="ghost" onClick={handleNewChat} className="w-full justify-start gap-2">
-                <Edit className="h-5 w-5" />
-                <span>New chat</span>
-            </Button>
-        </nav>
       </div>
       <ScrollArea className="flex-1 px-2">
         <div className="mt-4">

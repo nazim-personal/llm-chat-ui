@@ -8,14 +8,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useSidebar } from '@/components/ui/sidebar';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
 export function Header() {
-  const { toggleSidebar } = useSidebar();
-  
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-border bg-transparent px-4">
       <div className="flex items-center gap-2">
+        <SidebarTrigger className="md:hidden" />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="gap-1 text-lg font-semibold px-2">
