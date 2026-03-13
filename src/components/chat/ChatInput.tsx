@@ -1,13 +1,15 @@
 'use client';
 import { useState, useRef, useEffect, type FormEvent } from 'react';
-import { Plus, ArrowUp, Mic, Paperclip } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { Plus, ArrowUp, Mic, AudioLines } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useChat } from '@/modules/chat/hooks/useChat';
 
 export function ChatInput() {
   const [input, setInput] = useState('');
-  const { sendMessage, isStreaming } = useChat();
+  const { sendMessage, isStreaming, activeConversationId, createNewConversation } = useChat();
+  const router = useRouter();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -23,6 +25,12 @@ export function ChatInput() {
     e.preventDefault();
     if (!input.trim() || isStreaming) return;
 
+    let convId = activeConversationId;
+    if (!convId) {
+      convId = await createNewConversation();
+      router.push(`/chat/${convId}`);
+    }
+
     sendMessage(input);
     setInput('');
   };
@@ -35,7 +43,7 @@ export function ChatInput() {
   };
 
   return (
-    <div className="sticky bottom-0 bg-background/50 pb-4 pt-2 backdrop-blur-sm">
+    <div className="sticky bottom-0 bg-transparent pb-4 pt-2">
       <div className="relative mx-auto max-w-3xl">
         <form onSubmit={handleSubmit} className="relative flex w-full items-center rounded-full border border-border bg-secondary/50">
           <Button type="button" variant="ghost" size="icon" className="absolute left-2 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full">
@@ -54,7 +62,7 @@ export function ChatInput() {
           />
           <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
              <Button type="button" variant="ghost" size="icon" className="h-8 w-8 rounded-full">
-                <Paperclip className="h-4 w-4" />
+                <AudioLines className="h-4 w-4" />
             </Button>
             <Button type="button" variant="ghost" size="icon" className="h-8 w-8 rounded-full">
                 <Mic className="h-4 w-4" />
