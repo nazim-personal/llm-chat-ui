@@ -6,7 +6,9 @@ import { Sidebar as AppSidebar } from '@/components/sidebar/Sidebar';
 
 export default function ChatLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const conversationId = pathname.split('/').pop() || null;
+  const pathParts = pathname.split('/');
+  // A conversation ID is present if the path is /chat/<id>
+  const conversationId = pathParts.length > 2 && pathParts[1] === 'chat' ? pathParts[2] : null;
 
   return (
     <SidebarProvider>
