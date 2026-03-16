@@ -12,19 +12,18 @@ import {
   User,
   X,
 } from 'lucide-react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Settings as GeneralSettingsPanel } from '@/components/settings/Settings';
-import NotificationsPanel from './notifications/page';
-import PersonalizationPanel from './personalization/page';
-import AppsPanel from './apps/page';
-import DataControlsPanel from './data-controls/page';
-import SecurityPanel from './security/page';
-import ParentalControlsPanel from './parental-controls/page';
-import AccountPanel from './account/page';
+import GeneralSettingsPanel from '@/components/settings/panels/GeneralPanel';
+import NotificationsPanel from '@/components/settings/panels/NotificationsPanel';
+import PersonalizationPanel from '@/components/settings/panels/PersonalizationPanel';
+import AppsPanel from '@/components/settings/panels/AppsPanel';
+import DataControlsPanel from '@/components/settings/panels/DataControlsPanel';
+import SecurityPanel from '@/components/settings/panels/SecurityPanel';
+import ParentalControlsPanel from '@/components/settings/panels/ParentalControlsPanel';
+import AccountPanel from '@/components/settings/panels/AccountPanel';
 
 const settingsNav = [
   { id: 'general', name: 'General', icon: Cog, component: GeneralSettingsPanel },

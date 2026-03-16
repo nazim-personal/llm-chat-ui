@@ -1,5 +1,5 @@
-import { Settings } from '@/components/settings/Settings';
+import GeneralPanel from '@/components/settings/panels/GeneralPanel';
 
 export default function GeneralSettingsPage() {
-  return <Settings />;
+  return <GeneralPanel />;
 }
